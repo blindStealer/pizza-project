@@ -1,0 +1,36 @@
+.cart-item {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid  #F4F4F4;;
+
+  .title {
+    gap: 0px 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    div:first-child {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+
+  .quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+
+}
