@@ -30,9 +30,11 @@ const initialState: IPizzaItems = {
 
 export const fetchPizzas = createAsyncThunk<IPizza[]>(
   "pizza/fetchPizzas",
-  async (params, thunkApi) => {
+  async (selectCategory: number | void) => {
+    const category = `${selectCategory > 0 && `category=${selectCategory}`}`;
+
     const response = await axios.get<IPizza[]>(
-      "https://63342ee790a73d0fede8e34e.mockapi.io/items"
+      `https://63342ee790a73d0fede8e34e.mockapi.io/items?${category}`
     );
 
     return response.data as IPizza[];

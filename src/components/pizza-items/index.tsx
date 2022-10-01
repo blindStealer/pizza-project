@@ -7,10 +7,12 @@ import { PizzaItem } from "../pizza-item";
 export const PizzaItems = () => {
   const dispatch = useAppDispatch();
   const { items, status } = useAppSelector((state) => state.pizza);
+  const { selectCategory } = useAppSelector((state) => state.filter);
 
   useEffect(() => {
-    dispatch(fetchPizzas());
-  }, []);
+    // @ts-ignore
+    dispatch(fetchPizzas(selectCategory));
+  }, [selectCategory]);
 
   return (
     <div className={s.wrapper}>

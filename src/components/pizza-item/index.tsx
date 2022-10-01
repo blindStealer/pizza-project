@@ -16,12 +16,12 @@ export const PizzaItem: React.FC<IPizzaitemProps> = ({ item }) => {
       <div className={s.options}>
         <div className={s.types}>
           {item.types.map((item: any) => {
-            return <div>{types[item]}</div>;
+            return <div key={item}>{types[item]}</div>;
           })}
         </div>
         <div className={s.sizes}>
           {item.sizes.map((item: any) => {
-            return <div>{item} см.</div>;
+            return <div key={item}>{item} см.</div>;
           })}
         </div>
 
