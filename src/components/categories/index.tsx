@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./style.module.scss";
 import { CategoryItem } from "../category-item";
 import { Sort } from "../sort";
 export const Categories = () => {
+  const [showSortModal, setShowSortModal] = useState(false);
+
+  const showModal = () => {
+    setShowSortModal(!showSortModal);
+  };
+
   const categories = [
     "Все",
     "Мясные",
@@ -19,8 +25,7 @@ export const Categories = () => {
           return <CategoryItem item={item} idx={idx} key={idx} />;
         })}
       </div>
-
-      <Sort />
+      <Sort showModal={showModal} showSortModal={showSortModal} />
     </div>
   );
 };

@@ -30,11 +30,17 @@ const initialState: IPizzaItems = {
 
 export const fetchPizzas = createAsyncThunk<IPizza[]>(
   "pizza/fetchPizzas",
-  async (selectCategory: number | void) => {
-    const category = `${selectCategory > 0 && `category=${selectCategory}`}`;
+  async (props: any) => {
+    const { selectCategory, sort } = props;
+
+    console.log("selectCategory", selectCategory, "sort", sort);
+    const categoryQuery = `${
+      selectCategory > 0 && `category=${selectCategory}`
+    }`;
+    const sortQuery = `sortBy=${sort.sortProperty}&order=desc`;
 
     const response = await axios.get<IPizza[]>(
-      `https://63342ee790a73d0fede8e34e.mockapi.io/items?${category}`
+      `https://63342ee790a73d0fede8e34e.mockapi.io/items?${categoryQuery}&${sortQuery}`
     );
 
     return response.data as IPizza[];
