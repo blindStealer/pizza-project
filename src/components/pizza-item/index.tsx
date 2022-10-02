@@ -2,19 +2,26 @@ import React, { useState } from "react";
 import s from "./style.module.scss";
 import { IPizza } from "../../store/slices/pizza-slice";
 import { ICartItem, setItemsInCart } from "../../store/slices/cart-slice";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 
 interface IPizzaitemProps {
   item: IPizza;
 }
 
 export const PizzaItem: React.FC<IPizzaitemProps> = ({ item }) => {
+  const { cart } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   const [itemType, setItemType] = useState<number>(0);
   const [itemSize, setItemSize] = useState<number>(0);
 
   const types = ["тонкое", "традиционное"];
+
+  const itemInCart = cart.find((obj) => {
+    return obj.id === item.id;
+  });
+
+  const count = itemInCart ? itemInCart.count : 0;
 
   const clickHandler = () => {
     const itemInCart: ICartItem = {
@@ -38,7 +45,13 @@ export const PizzaItem: React.FC<IPizzaitemProps> = ({ item }) => {
         <div className={s.types}>
           {item.types.map((item: any) => {
             return (
-              <div onClick={() => setItemType(item)} key={item}>
+              <div
+                className={
+                  itemType === item ? s["item-type-active"] : s["item-type"]
+                }
+                onClick={() => setItemType(item)}
+                key={item}
+              >
                 {types[item]}
               </div>
             );
@@ -47,7 +60,13 @@ export const PizzaItem: React.FC<IPizzaitemProps> = ({ item }) => {
         <div className={s.sizes}>
           {item.sizes.map((item: any) => {
             return (
-              <div onClick={() => setItemSize(item)} key={item}>
+              <div
+                className={
+                  itemSize === item ? s["item-size-active"] : s["item-size"]
+                }
+                onClick={() => setItemSize(item)}
+                key={item}
+              >
                 {item} см.
               </div>
             );
@@ -58,7 +77,8 @@ export const PizzaItem: React.FC<IPizzaitemProps> = ({ item }) => {
           <div className={s["add-button-price"]}>от {item.price} ₽</div>
 
           <div onClick={clickHandler} className={s["add-button-add"]}>
-            Добавить 2{" "}
+            <div>Добавить </div>
+            <div className={s.count}>{count !== 0 ? count : ""}</div>
           </div>
         </div>
       </div>

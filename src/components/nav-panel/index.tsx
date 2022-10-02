@@ -3,7 +3,9 @@ import s from "./style.module.scss";
 import pizzaLogo from "../../assets/images/pizzaLogo.svg";
 import cartIcon2 from "../../assets/images/cartIcon_2.svg";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../store";
 export const NavPanel = () => {
+  const { totalPrice, cart } = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
 
   return (
@@ -16,11 +18,15 @@ export const NavPanel = () => {
         </div>
       </div>
 
-      <div onClick={() => navigate("./cart")} className={s["cart-button"]}>
-        <span>520 ₽</span>
-        <div>|</div>
-        <img className={s["cart-icon"]} src={cartIcon2} alt="cart-icon" />
-      </div>
+      {cart.length !== 0 && (
+        <div onClick={() => navigate("./cart")} className={s["cart-button"]}>
+          <div className={s["cart-button-totalPrice"]}>
+            <div> {totalPrice}</div>
+            <div className={s["cart-button-totalPrice-icon"]}> ₽</div>
+          </div>
+          <img className={s["cart-icon"]} src={cartIcon2} alt="cart-icon" />
+        </div>
+      )}
     </div>
   );
 };

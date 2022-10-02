@@ -59,6 +59,26 @@ export const cartSlice = createSlice({
         return item.id !== action.payload;
       });
     },
+
+    plusItem: (state, action) => {
+      const findItem: ICartItem | undefined = state.cart.find(
+        (obj: ICartItem) => obj.id === action.payload.id
+      );
+
+      if (findItem) {
+        findItem.count++;
+      }
+    },
+
+    minusItem: (state, action) => {
+      const findItem: ICartItem | undefined = state.cart.find(
+        (obj: ICartItem) => obj.id === action.payload.id
+      );
+
+      if (findItem && findItem.count > 0) {
+        findItem.count--;
+      }
+    },
   },
 });
 
@@ -69,4 +89,6 @@ export const {
   removeItem,
   setTotalCount,
   setTotalPrice,
+  plusItem,
+  minusItem,
 } = cartSlice.actions;

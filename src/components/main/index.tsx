@@ -6,7 +6,24 @@ import { NavPanel } from "../nav-panel";
 import { Cart } from "../cart";
 import { Home } from "../home";
 import { EmptyCart } from "../empty-cart";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { setTotalCount, setTotalPrice } from "../../store/slices/cart-slice";
 const Main = () => {
+  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((state) => state.cart);
+
+  const totalC = cart.reduce((acc, item) => {
+    return (acc += item.count);
+  }, 0);
+
+  const totalP = cart.reduce((acc, item) => {
+    return (acc += item.price * item.count);
+  }, 0);
+
+  React.useEffect(() => {
+    dispatch(setTotalCount(totalC));
+    dispatch(setTotalPrice(totalP));
+  }, [totalC, totalP]);
   return (
     <div className={s.wrapper}>
       <NavPanel />

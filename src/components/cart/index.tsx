@@ -6,31 +6,13 @@ import trash from "./../../assets/images/trash.svg";
 import { CartItem } from "../cart-item";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store";
-import {
-  clearCart,
-  removeItem,
-  setTotalCount,
-  setTotalPrice,
-} from "../../store/slices/cart-slice";
+import { clearCart, removeItem } from "../../store/slices/cart-slice";
 export const Cart = () => {
   const dispatch = useAppDispatch();
 
   const { cart, totalCount, totalPrice } = useAppSelector(
     (state) => state.cart
   );
-
-  const totalC = cart.reduce((acc, item) => {
-    return (acc += item.count);
-  }, 0);
-
-  const totalP = cart.reduce((acc, item) => {
-    return (acc += item.price * item.count);
-  }, 0);
-
-  React.useEffect(() => {
-    dispatch(setTotalCount(totalC));
-    dispatch(setTotalPrice(totalP));
-  }, [cart, totalC, totalP]);
 
   const navigate = useNavigate();
 
@@ -50,7 +32,11 @@ export const Cart = () => {
         <div className={s["cart-title-wrapper"]}>
           <div className={s["cart-title"]}>
             <img src={cartIcon2} alt="cartIcon2" width={50} />
-            <div>Ваша наполненная корзина</div>
+            {cart.length > 0 ? (
+              <div>Ваша наполненная корзина</div>
+            ) : (
+              <div>Ваша пустая корзинка :(</div>
+            )}
           </div>
           <div className={s["delete-trash"]}>
             <img src={trash} alt="trash" width={25} />

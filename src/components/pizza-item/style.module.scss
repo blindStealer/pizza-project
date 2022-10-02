@@ -5,6 +5,11 @@
   flex-direction: column;
   width: 350px;
   height: 459px;
+  //transition: all 1s ease-out;
+
+  &:hover {
+
+  }
 
   .title {
     font-size: 18px;
@@ -12,7 +17,17 @@
   }
 
   >img {
+    transition: all 2.5s 0s ease;
     width: 260px;
+  }
+
+  >img:hover {
+
+    -webkit-transform: rotateX(-1deg) rotateY(1deg) rotateZ(180deg);
+    -moz-transform: rotateX(-1deg) rotateY(1deg) rotateZ(180deg);
+    -ms-transform: rotateX(-1deg) rotateY(1deg) rotateZ(180deg);
+    -o-transform: rotateX(-1deg) rotateY(1deg) rotateZ(180deg);
+    transform:  rotateX(-1deg) rotateY(1deg) rotateZ(180deg);
   }
   .options {
     display: flex;
@@ -23,7 +38,7 @@
     height: 85px;
     background: #F3F3F3;
     border-radius: 10px;
-
+     cursor: pointer;
     .types {
       display: flex;
       justify-content: center;
@@ -37,6 +52,15 @@
         border-radius: 5px;
         width: 100%;
         padding: 3px 7px
+      }
+
+      .item-type {
+        color: #7B7B7B;
+      }
+
+      .item-type-active {
+        color: #000000;
+        font-weight: bold;
       }
     }
 
@@ -58,6 +82,15 @@
 
       }
 
+      .item-size-active {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .item-size {
+        color: #7B7B7B;
+      }
+
 
     }
 
@@ -67,15 +100,21 @@
       gap: 30px;
       align-items: center;
       margin-top: 20px;
+      cursor: pointer;
+
 
       &-price {
         display: flex;
-        font-size: 20px;
+        font-size: 18px;
+      }
+
+      &:hover {
       }
 
       &-add {
         display: flex;
         justify-content: center;
+        gap: 0 10px;
         align-items: center;
         background: #FFFFFF;
         border: 1px solid #EB5A1E;
@@ -83,6 +122,28 @@
         border-radius: 30px;
         min-width: 150px;
         height: 45px;
+
+        transition: all 60ms 0ms ease;
+
+        moz-user-select: none; -khtml-user-select: none; user-select: none;
+
+
+        &:hover {
+
+        }
+        &:active {
+          //color: #D3D3D3;
+          -webkit-transform: translateX(0px) scale(0.9);
+          -moz-transform: translateX(0px) scale(0.9);
+          -ms-transform: translateX(0px) scale(0.9);
+          -o-transform: translateX(0px) scale(0.9);
+          transform:  translateX(0px) scale(0.9);
+        }
+        .count {
+
+          font-size: 15px;
+        }
+
       }
     }
   }

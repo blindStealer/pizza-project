@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import s from "./style.module.scss";
-import vector from "../../assets/images/vector.svg";
 import UpArrow from "./../../assets/images/upArrow.svg";
 import downArrow from "./../../assets/images/downArrow.svg";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -39,7 +38,7 @@ export const Sort: React.FC<ISortProps> = ({ showSortModal, showModal }) => {
           alt="UpArrow"
           width={20}
         />
-        Сортировка по: <span>{sort.sortName}</span>
+        Сортировка по: <span>{sort.sortName ? sort.sortName : "выбрать"}</span>
       </div>
 
       {showSortModal && (

@@ -2,7 +2,9 @@ import React from "react";
 import s from "./style.module.scss";
 import close2 from "./../../assets/images/close_2.svg";
 import plus from "./../../assets/images/plus.svg";
-import minus_2 from "./../../assets/images/minus_2.svg";
+import minus from "./../../assets/images/minus_2.svg";
+import { useAppDispatch } from "../../store";
+import { minusItem, plusItem } from "../../store/slices/cart-slice";
 export const CartItem = ({
   imageUrl,
   title,
@@ -13,6 +15,8 @@ export const CartItem = ({
   id,
   removeItemHandler,
 }: any) => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className={s["cart-item"]}>
       <div className={s.title}>
@@ -25,14 +29,25 @@ export const CartItem = ({
         </div>
       </div>
       <div className={s.quantity}>
-        <img src={minus_2} alt="plus" width={20} />
-        <img src={plus} alt="minus" width={30} />
+        <img
+          onClick={() => dispatch(minusItem({ id }))}
+          src={minus}
+          alt="minus"
+          width={25}
+        />
+        <img
+          onClick={() => dispatch(plusItem({ id }))}
+          src={plus}
+          alt="plus"
+          width={35}
+        />
         <div>{count}</div>
       </div>
 
       <div className={s.price}>{price} ₽ </div>
 
       <img
+        className={s.close}
         onClick={() => removeItemHandler(id)}
         src={close2}
         alt="close2"

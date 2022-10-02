@@ -33,7 +33,6 @@ export const fetchPizzas = createAsyncThunk<IPizza[]>(
   async (props: any) => {
     const { selectCategory, sort } = props;
 
-    console.log("selectCategory", selectCategory, "sort", sort);
     const categoryQuery = `${
       selectCategory > 0 && `category=${selectCategory}`
     }`;

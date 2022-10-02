@@ -28,9 +28,16 @@
 
         .delete-trash {
           display: flex;
+          color: #7B7B7B;
           justify-content: center;
           align-items: center;
           gap: 7px;
+          cursor: pointer;
+
+          &:hover{
+            color: black;
+
+          }
         }
       }
 
@@ -50,6 +57,15 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
+      color: #7B7B7B;
+      cursor: pointer;
+
+
+      div:hover {
+        background: #282828;
+        color: #ffffff;
+      }
+
 
       .button-back {
         display: flex;
@@ -67,7 +83,6 @@
         justify-content: center;
         align-items: center;
         min-width: 220px;
-        background: #fff4f4;
         border: 1px solid #D3D3D3;
         border-radius: 30px;
       }

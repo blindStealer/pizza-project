@@ -1,4 +1,8 @@
+
+
+
 .cart-item {
+  position: relative;
   padding: 20px 0;
   display: flex;
   justify-content: space-between;
@@ -12,6 +16,22 @@
     align-items: center;
     display: flex;
 
+    img {
+      transition: all 4s 0s ease;
+
+
+      &:hover {
+        -webkit-transform: rotateX(-1deg) rotateY(1deg) rotateZ(360deg);
+        -moz-transform: rotateX(-1deg) rotateY(1deg) rotateZ(360deg);
+        -ms-transform: rotateX(-1deg) rotateY(1deg) rotateZ(360deg);
+        -o-transform: rotateX(-1deg) rotateY(1deg) rotateZ(360deg);
+        transform:  rotateX(-1deg) rotateY(1deg) rotateZ(360deg);
+      }
+
+    }
+
+
+
     div:first-child {
       font-weight: bold;
       font-size: 18px;
@@ -20,16 +40,42 @@
 
 
   .quantity {
+    position: absolute;
+    left: 450px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    moz-user-select: none; -khtml-user-select: none; user-select: none;
+
+    img:hover {
+      -webkit-transform: translateX(0px) scale(1.2);
+      -moz-transform: translateX(0px) scale(1.2);
+      -ms-transform: translateX(0px) scale(1.2);
+      -o-transform: translateX(0px) scale(1.2);
+      transform:  translateX(0px) scale(1.2);
+    }
 
 
   }
 
   .price {
+    position: absolute;
+    left: 710px;
     font-weight: bold;
+  }
+
+  .close {
+    cursor: pointer;
+
+    &:hover {
+      -webkit-transform: translateX(0px) scale(0.9);
+      -moz-transform: translateX(0px) scale(0.9);
+      -ms-transform: translateX(0px) scale(0.9);
+      -o-transform: translateX(0px) scale(0.9);
+      transform:  translateX(0px) scale(0.9);
+    }
   }
 
 
